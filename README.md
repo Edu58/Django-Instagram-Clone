@@ -1,2 +1,2 @@
 # Django-Instagram-Clone
-An Instagram clone built with Django and PostgreSQL
+An instagram clone built with Django, Bootstrap 5, and PostgreSQL Db
