@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'login.css' %}">
+{% endblock styles %}
+
+{% block title %} Login {% endblock title %}
+
+{% block content %}
+<section class="container login d-flex justify-content-center align-items-center min-vh-100">
+        <img src="./insta-login-phones.png" alt="" srcset="">
+
+        <div>
+            <div class="card p-3" style="max-width: 22rem;">
+                <h5 class="card-title text-center fst-italic fw-bold mb-3">Instagram</h5>
+                <div class="card-body">
+                    <form>
+                        <div class="mb-3">
+                            <input type="email" name="username" placeholder="username" class="form-control"
+                                id="username" aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" name="password" placeholder="password" class="form-control"
+                                id="password">
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 fw-bold btn-sm">Log In</button>
+
+                        <p class="fw-light text-center text-secondary my-3">OR</p>
+
+                        <div class="text-center">
+                            <div>
+                                <small class="mb-3 text-primary d-flex justify-content-center fw-bold">
+                                    <i class='bx bxl-facebook-square fs-4'></i>
+                                    <p>Log in with Facebook</p>
+                                </small>
+                            </div>
+
+                            <div>
+                                <small class="text-primary fw-light">
+                                    Forgot password?
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 border-top border-bottom py-3 text-center">
+                            <small>Don't have an account? <a href="" class="fw-bold text-decoration-none">Sign
+                                    up</a></small>
+                        </div>
+
+                        <div class="text-center">
+                            <p class="my-3">
+                                <small>Get the app</small>
+                            </p>
+
+                            <div class="d-flex">
+                                <div class="d-flex bg-dark align-items-center text-light me-1 rounded">
+                                    <i class='bx bxl-apple fs-3'></i>
+                                    <small>
+                                        <small>Download on <span class="fs-5">App Store</span></small>
+                                    </small>
+                                </div>
+                                <div class="d-flex align-items-center bg-dark p-1 text-light rounded">
+                                    <i class='bx bxl-play-store fs-3'></i>
+                                    <small>
+                                        <small>Download on <span class="fs-5">Google Play</span></small>
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

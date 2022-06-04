@@ -1,0 +1,127 @@
+* {
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+    list-style: none;
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+}
+
+header {
+    margin-bottom: 10%;
+}
+
+header nav {
+    background-color: #FFF;
+}
+
+header nav .nav-icons button {
+    font-size: 1.6rem;
+}
+
+section {
+    display: flex;
+    justify-content: center;
+}
+
+section .content {
+    display: grid;
+    grid-template-columns: 2.5fr 1.5fr;
+}
+
+section .content .stories {
+    overflow-x: scroll;
+    max-width: 30rem;
+}
+
+section .content .stories::-webkit-scrollbar {
+    display: none;
+}
+
+section .content .stories img {
+    margin: 0 .5rem;
+}
+
+section .content .stories img,
+section .sidebar aside .profile img {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+}
+
+section .content .stories img {
+    border: 3px solid rgb(255, 198, 74);
+}
+
+section .content .stories a {
+    text-align: center;
+    text-decoration: none;
+    color: #000;
+    word-wrap: break-word;
+}
+
+section .content .posts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+section .content .posts .card {
+    max-width: 30rem;
+}
+
+section .content .posts .card .card-header img,
+section .sidebar aside img {
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+}
+
+section .content .posts .card .post-image img {
+    border-radius: 0 !important;
+}
+
+@media screen and (max-width: 990px) {
+
+    header {
+        margin-bottom: 15%;
+    }
+
+    header nav .search {
+        display: none;
+    }
+
+    section .content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    section .content .stories {
+        margin: auto;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    header {
+        margin-bottom: 25%;
+    }
+
+    header nav .nav-icons button {
+        font-size: 1.2rem;
+    }
+
+    header nav .nav-icons button {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    header {
+        margin-bottom: 35%;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    header {
+        margin-bottom: 45%;
+    }
+}
