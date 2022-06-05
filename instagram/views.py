@@ -2,9 +2,11 @@ from django.shortcuts import redirect, render
 from django.contrib.auth import login, logout, authenticate
 from .forms import SignUpForm, LoginUserForm
 from django.contrib import messages
+from .models import Image, Profile, Comments, Likes 
 
 # Create your views here.
 def home(request):
+    
     return render(request, 'index.html')
 
 

@@ -20,6 +20,9 @@ class Image(models.Model):
     created_on = models.DateField(auto_now_add=True)
     reaction = models.IntegerField(default=0)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    
+    class Meta:
+        ordering = ['created_on']
 
     def __str__(self):
         return self.image_name
