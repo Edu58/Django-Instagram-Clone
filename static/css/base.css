@@ -71,6 +71,10 @@ section .content .aside {
     max-width: 30rem;
 }
 
+section .content .aside .sidebar {
+    position: fixed;
+}
+
 @media screen and (max-width: 990px) {
     header {
         margin-bottom: 20%;
@@ -101,6 +105,10 @@ section .content .aside {
 
     section .content .aside {
         width: 100%;
+    }
+
+    section .content .aside .sidebar {
+        position: relative;
     }
 }
 
