@@ -8,3 +8,9 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = '__all__'
+        
+        
+class LoginUserForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ['username', 'password1']

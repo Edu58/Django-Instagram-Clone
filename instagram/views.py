@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import SignUpForm
+from .forms import SignUpForm, LoginUserForm
 from django.contrib.auth.models import User
 from django.contrib import messages
 
@@ -28,4 +28,12 @@ def signup(request):
 
 
 def login(request):
-    return render(request, 'login.html')
+    form = LoginUserForm()
+    
+    if request.method == "POST":
+        form = LoginUserForm(request.POST)
+        
+        if form.is_valid():
+            print(form.username)
+            
+    return render(request, 'login.html', {'form': form})
