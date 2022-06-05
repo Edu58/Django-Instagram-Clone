@@ -6,6 +6,10 @@ def home(request):
     return render(request, 'index.html')
 
 
+def profile(request):
+    return render(request, 'profile.html')
+
+
 def signup(request):
     return render(request, 'signup.html')
 
