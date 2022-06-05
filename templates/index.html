@@ -74,7 +74,7 @@
                 <div class="card mb-3">
                     <div class="card-header d-flex justify-content-between align-items-center bg-transparent">
                         <div class="d-flex">
-                            <img class="img-fluid" src="{{ post.profile.profile_photo }}" alt="">
+                            <img class="img-fluid" src="{{ post.profile.profile_photo.url }}" alt="">
                             <div class="d-flex flex-column ms-4">
                                 <span class="fw-bold">{{ post.profile.user.username }}</span>
                                 <span>
@@ -90,7 +90,8 @@
                         </a>
                     </div>
                     <div class="post-image">
-                        <img src="{{ post.image.url }}" class="card-img-top img-fluid" alt="{{ post.image_name }}">
+                        <img src="{{ post.image.url }}" class="card-img-top img-fluid" alt="{{ post.image_name }}"
+                            style="max-height: 30rem;">
                     </div>
                     <div class="card-body">
                         <div class="card-title d-flex justify-content-between">
@@ -105,22 +106,29 @@
                             </div>
                         </div>
                         <p class="fw-bold">
-                            {{ post.likes.count }} likes
+                            {{ post.reaction }} likes
                         </p>
-                        <p class="card-text fw-light">{{ post.image_caption }}
+                        <p class="card-text fw-light">
+                            <small class="fw-bold">{{ post.profile.user.username }}</small>
+                            <small class="fs-light">{{ post.image_caption }}</small>
+                        </p>
+
+                        <p class="card-text fw-light">
+                            <small class="fw-bold">bravo</small>
+                            <small>nice shot</small>
                         </p>
 
                         <div>
-                            <form class="d-flex align-items-center">
+                            <form>
                                 <div class="input-group mb-3">
-                                    <span class="input-group-text bg-transparent" id="basic-addon1">
+                                    <span class="input-group-text">
                                         <i class='bx bxs-face'></i>
                                     </span>
-                                    <input type="text" class="form-control shadow-none" placeholder="Add a comment..."
-                                        aria-label="Username" aria-describedby="basic-addon1">
+                                    <input type="text" class="form-control">
+                                    <span class="input-group-text">
+                                        <a href="" class="text-decoration-none">Post</a>
+                                    </span>
                                 </div>
-
-                                <a href="" class="text-decoration-none">Post</a>
                             </form>
                         </div>
 
@@ -137,10 +145,9 @@
             <div class="sidebar p-3">
                 <div class="d-flex profile align-items-center">
                     <a href="{% url 'profile' %}">
-                        <img class="img-fluid"
-                            src="https://images.pexels.com/photos/60597/dahlia-red-blossom-bloom-60597.jpeg?cs=srgb&dl=pexels-pixabay-60597.jpg&fm=jpg" />
+                        <img class="img-fluid" src="{{ user.profile.profile_photo.url }}" />
                     </a>
-                    
+
                     <a href="{% url 'profile' %}" class="text-decoration-none">
                         <p class="ms-5 fs-4 fw-light text-dark">{{ user.username }}</p>
                     </a>

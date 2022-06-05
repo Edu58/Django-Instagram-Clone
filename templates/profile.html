@@ -12,8 +12,12 @@
 <section class="container d-flex flex-column justify-content-center align-items-center">
     <div class="profile d-flex justify-content-around">
         <div class="dp pe-5">
-            <img src="https://images.pexels.com/photos/60597/dahlia-red-blossom-bloom-60597.jpeg?cs=srgb&dl=pexels-pixabay-60597.jpg&fm=jpg"
-                alt="">
+            {% if user.profile.profile_photo %}
+            <img src="{{ user.profile.profile_photo.url }}" alt="">
+            {% else %}
+
+            No photo
+            {% endif %}
         </div>
 
         <div class="profile-info">
@@ -21,7 +25,25 @@
                 {{user.username}}
             </p>
 
-            <form action="{% url 'upload' %}" method="post" enctype="multipart/form-data">
+            {{user.profile.bio}}
+
+            {% if user.profile.bio %}
+            <div class="d-flex justify-content-between">
+                <p>{{ user.image.count }}posts</p>
+                <p>800followers</p>
+                <p>200following</p>
+            </div>
+
+            <div class="bio">
+                <small>
+                    {{user.profile.bio}}
+                </small>
+            </div>
+
+            {% else %}
+            <p class="fs-5">update profile</p>
+            {{user.id}}
+            <form action="{% url 'profile' %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="mb-3">
                     {{form.profile_photo}}
@@ -38,18 +60,7 @@
                 <p class="fs-3">{{ form.errors }}</p>
                 <button type="submit" class="btn btn-primary w-100 fw-bold btn-sm">upload</button>
             </form>
-
-            <div class="d-flex justify-content-between">
-                <p>{{ user.image.count }}posts</p>
-                <p>800followers</p>
-                <p>200following</p>
-            </div>
-
-            <div class="bio">
-                <small>
-                    {{user.profile.bio}}
-                </small>
-            </div>
+            {% endif %}
         </div>
 
     </div>

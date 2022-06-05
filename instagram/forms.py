@@ -1,6 +1,3 @@
-from dataclasses import fields
-from operator import mod
-from pyexpat import model
 from django import forms
 from django.forms import DateField, ModelForm
 from django.contrib.auth.forms import UserCreationForm
@@ -25,7 +22,7 @@ class LoginUserForm(UserCreationForm):
         
     
     
-class ProfileForm(ModelForm):
+class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['profile_photo', 'bio', 'location', 'birth_date']
@@ -33,9 +30,9 @@ class ProfileForm(ModelForm):
             'birth_date': forms.DateInput(attrs={'type': 'date'})
         }
         
-        
 
-class UploadForm(ModelForm):
+class UploadForm(forms.ModelForm):
     class Meta:
         model = Image
-        fields = ['image_name', 'image', 'image_caption']
+        fields = ['image_name', 'image', 'image_caption', 'reaction', 'profile']
+        exclude = ['profile']

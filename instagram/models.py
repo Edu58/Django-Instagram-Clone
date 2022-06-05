@@ -13,15 +13,6 @@ class Profile(models.Model):
     birth_date = models.DateField(null=False, blank=False)
     location = models.CharField(max_length=30, null=True, blank=True)
     
-    @receiver(post_save, sender=User)
-    def create_user_profile(sender, instance, created, **kwargs):
-        if created:
-            Profile.objects.create(user=instance)
-            
-    @receiver(post_save, sender=User)
-    def save_user_profile(sender, instance, **kwargs):
-        instance.profile.save()
-        
     def __str__(self):
         return self.user.username
 
@@ -31,12 +22,12 @@ class Image(models.Model):
     image_name = models.CharField(max_length=50, null=False, blank=False)
     image_caption = models.CharField(max_length=100, blank=False, null=False)
     created_on = models.DateField(auto_now_add=True)
-    reaction = models.IntegerField(default=0)
+    reaction = models.IntegerField(default=0, null=True, blank=True)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
 
     
     class Meta:
-        ordering = ['created_on']
+        ordering = ['-created_on']
         
     def save_image(self):
         self.save()

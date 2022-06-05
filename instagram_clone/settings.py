@@ -103,6 +103,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_PROFILE_MODULE = 'instagram.Profile'
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 

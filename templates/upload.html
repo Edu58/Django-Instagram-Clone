@@ -10,7 +10,7 @@
 
 {% block content %}
 <div class="upload">
-    <form action="{% url 'upload' %}" method="post" enctype="multipart/form-data">
+    <form action="{% url 'upload' %}" method="post" enctype="multipart/form-data" novalidate>
         {% csrf_token %}
         <div class="mb-3">
             {{form.image_name}}

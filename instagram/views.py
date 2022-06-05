@@ -1,4 +1,5 @@
 from re import U
+from turtle import pos
 from django.shortcuts import redirect, render
 from django.contrib.auth import login, logout, authenticate
 from .forms import SignUpForm, LoginUserForm, ProfileForm, UploadForm
@@ -8,6 +9,7 @@ from .models import Image, Profile, Comments, Likes
 # Create your views here.
 def home(request):
     all_posts = Image.objects.all()
+    print(all_posts)
     return render(request, 'index.html', {'posts': all_posts})
 
 
@@ -15,7 +17,7 @@ def profile(request):
     form = ProfileForm()
     
     if request.method == "POST":
-        form = UploadForm(request.POST, request.FILES)
+        form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
         if form.is_valid():
             form.save()
             return redirect('profile')
@@ -25,12 +27,15 @@ def profile(request):
 
 def upload(request):
     form = UploadForm()
-    
+    current_user = request.user.profile
     if request.method == "POST":
         form = UploadForm(request.POST, request.FILES)
+        
         if form.is_valid():
-            form.save()
-            return redirect('home')
+            post = form.save(commit=False)
+            post.profile = current_user
+            post.save()
+        return redirect('home')
         
         
     return render(request, 'upload.html', {'form': form})
