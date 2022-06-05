@@ -9,6 +9,9 @@ class Profile(models.Model):
     bio = models.TextField(max_length=500, blank=True)
     birth_date = models.DateField(null=True, blank=True)
 
+    def __str__(self):
+        return self.user
+
 
 class Image(models.Model):
     image = models.ImageField(upload_to='photo/', blank=False, null=False)
@@ -18,6 +21,9 @@ class Image(models.Model):
     likes = models.IntegerField(default=0)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.image_name
+
 
 class Comments(models.Model):
     comment = models.CharField(max_length=200, null=False, blank=False)
@@ -25,7 +31,14 @@ class Comments(models.Model):
     image = models.ForeignKey(Image, on_delete=models.CASCADE)
     created_on = models.DateField(auto_now_add=True)
 
+    def __str__(self):
+        return self.comment
+
 
 class Likes(models.Model):
+    created_on = models.DateField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     image = models.ForeignKey(Image, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.user
