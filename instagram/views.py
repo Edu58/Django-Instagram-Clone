@@ -6,8 +6,8 @@ from .models import Image, Profile, Comments, Likes
 
 # Create your views here.
 def home(request):
-    
-    return render(request, 'index.html')
+    all_posts = Image.objects.all()
+    return render(request, 'index.html', {'posts': all_posts})
 
 
 def profile(request):
