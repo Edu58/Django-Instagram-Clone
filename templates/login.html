@@ -16,7 +16,7 @@
             <div class="card p-3" style="max-width: 22rem;">
                 <h5 class="card-title text-center fst-italic fw-bold mb-3">Instagram</h5>
                 <div class="card-body">
-                    <form method="POST">
+                    <form method="POST" action="{% url 'login' %}">
                         {% csrf_token %}
                         <div class="mb-3">
                             {{form.username}}

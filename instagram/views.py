@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
+from django.contrib.auth import login, logout, authenticate
 from .forms import SignUpForm, LoginUserForm
-from django.contrib.auth.models import User
 from django.contrib import messages
 
 # Create your views here.
@@ -12,7 +12,7 @@ def profile(request):
     return render(request, 'profile.html')
 
 
-def signup(request):
+def signup_user(request):
     form = SignUpForm()
     
     if request.method == "POST":
@@ -27,13 +27,17 @@ def signup(request):
     return render(request, 'signup.html', {'form': form})
 
 
-def login(request):
+def login_user(request):
     form = LoginUserForm()
     
     if request.method == "POST":
-        form = LoginUserForm(request.POST)
+        username = request.POST.get('username')
+        password = request.POST.get('password1')
         
-        if form.is_valid():
-            print(form.username)
+        user  = authenticate(request, username=username, password=password)
+        
+        if user is not None:
+            login(request, user)
+            return redirect('home')
             
     return render(request, 'login.html', {'form': form})

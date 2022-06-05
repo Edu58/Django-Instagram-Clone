@@ -26,7 +26,7 @@
             <p class="fw-light text-center text-secondary my-2">OR</p>
 
             <div class="card-body">
-                <form method="post">
+                <form method="post" action="{% url 'signup' %}">
                     {% csrf_token %}
                     <div class="mb-3">
                         {{form.email}}
@@ -45,6 +45,7 @@
                     </div>
 
                     <div class="text-center text-secondary mb-3">
+                        {{form.errors}}
                         <small>
                             By signing up, you agree to our Terms, Data Policy and Cookies Policy
                         </small>
@@ -58,27 +59,6 @@
                             <a href="{% url 'login' %}" class="text-decoration-none fw-bold">Log In</a>
                         </p>
                     </div>
-
-                    <!-- <div class="text-center">
-                            <p class="my-3">
-                                <small>Get the app</small>
-                            </p>
-
-                            <div class="d-flex">
-                                <div class="d-flex bg-dark align-items-center text-light me-1 rounded">
-                                    <i class='bx bxl-apple fs-3'></i>
-                                    <small>
-                                        <small>Download on <span class="fs-5">App Store</span></small>
-                                    </small>
-                                </div>
-                                <div class="d-flex align-items-center bg-dark p-1 text-light rounded">
-                                    <i class='bx bxl-play-store fs-3'></i>
-                                    <small>
-                                        <small>Download on <span class="fs-5">Google Play</span></small>
-                                    </small>
-                                </div>
-                            </div>
-                        </div> -->
                 </form>
             </div>
         </div>

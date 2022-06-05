@@ -18,74 +18,67 @@ header nav .nav-icons button {
     font-size: 1.6rem;
 }
 
-section .content {
-display: flex;
-    margin: auto;
-    text-align: center;
-}
-
-section .center {
+section .content .center {
     max-width: 30rem;
 }
 
-section .content .stories {
+section .content .center .stories {
+    max-width: 30rem;
     overflow-x: scroll;
-    max-width: 30rem;
 }
 
-section .content .stories::-webkit-scrollbar {
+section .content .center .stories::-webkit-scrollbar {
     display: none;
 }
 
-section .content .stories img {
+section .content .center .stories img {
     margin: 0 .5rem;
 }
 
-section .content .stories img,
-section .sidebar aside .profile img {
+section .content .center .stories img,
+section .content .profile img {
     width: 4rem;
     height: 4rem;
     border-radius: 50%;
 }
 
-section .content .stories img {
+section .content .posts .card .card-header img,
+section .aside img {
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+}
+
+
+section .content .center .stories img {
     border: 3px solid rgb(255, 198, 74);
 }
 
-section .content .stories a {
+section .content .center .stories a {
     text-align: center;
     text-decoration: none;
     color: #000;
     word-wrap: break-word;
 }
 
-section .content .posts {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 
-section .content .posts .card {
-    max-width: 30rem;
-}
 
-section .content .posts .card .card-header img,
-section .sidebar aside img {
-    height: 3rem;
-    width: 3rem;
-    border-radius: 50%;
-}
-
-section .content .posts .card .post-image img {
+section .content .center .posts .card .post-image img {
     border-radius: 0 !important;
 }
 
-section .content .sidebar {
-    max-width: 15rem;
-    padding-left: -20rem;
+section .content .aside {
+    max-width: 30rem;
 }
 
 @media screen and (max-width: 990px) {
+    header {
+        margin-bottom: 20%;
+    }
+}
+
+
+@media screen and (max-width: 900px) {
 
     header {
         margin-bottom: 15%;
@@ -98,10 +91,22 @@ section .content .sidebar {
     section .content {
         display: flex;
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
-    section .content .stories {
-        margin: auto;
+    section .content .center {
+        margin: 0 !important;
+    }
+
+    section .content .aside {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 490px) {
+    section .content .center .stories {
+        display: none;
     }
 }
 
@@ -116,17 +121,5 @@ section .content .sidebar {
 
     header nav .nav-icons button {
         display: none;
-    }
-}
-
-@media screen and (max-width: 375px) {
-    header {
-        margin-bottom: 35%;
-    }
-}
-
-@media screen and (max-width: 320px) {
-    header {
-        margin-bottom: 45%;
     }
 }
