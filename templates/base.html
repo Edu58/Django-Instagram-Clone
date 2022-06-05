@@ -23,7 +23,7 @@
     <header class="container">
         <nav class="navbar navbar-light border-bottom fixed-top">
             <div class="container">
-                <a class="navbar-brand fst-italic fs-3 fw-bold">Instagram</a>
+                <a class="navbar-brand fst-italic fs-3 fw-bold text-decoration-none" href="{% url 'home' %}">Instagram</a>
                 <div class="search pt-2">
                     <form class="d-flex">
                         <div class="input-group mb-3">
@@ -36,11 +36,11 @@
                     </form>
                 </div>
                 <div class="nav-icons">
-                    <button class="btn"><i class='bx bx-home-alt'></i></button>
-                    <button class="btn"><i class='bx bx-message-square-dots'></i></button>
-                    <button class="btn"><i class='bx bx-message-square-add'></i></button>
-                    <button class="btn"><i class='bx bx-compass'></i></button>
-                    <button class="btn"><i class='bx bx-heart'></i></button>
+                    <a href="{% url 'upload' %}" class="btn"><i class='bx bx-home-alt fs-3'></i></a>
+                    <a href="{% url 'upload' %}" class="btn"><i class='bx bx-message-square-dots fs-3'></i></a>
+                    <a href="{% url 'upload' %}" class="btn"><i class='bx bx-message-square-add fs-3'></i></a>
+                    <a href="{% url 'upload' %}" class="btn"><i class='bx bx-compass fs-3'></i></a>
+                    <a href="{% url 'upload' %}" class="btn"><i class='bx bx-heart fs-3'></i></a>
                 </div>
             </div>
         </nav>

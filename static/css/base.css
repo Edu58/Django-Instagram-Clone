@@ -14,7 +14,7 @@ header nav {
     background-color: #FFF;
 }
 
-header nav .nav-icons button {
+header nav .nav-icons a i {
     font-size: 1.6rem;
 }
 

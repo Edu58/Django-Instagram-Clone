@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/update-profile.css' %}">
+{% endblock styles %}
+
+{% block title %} Update Profile {% endblock title %}
+
+{% block content %}
+
+
+{% block scripts %}
+{{ block.super }}
+<script src="{% static 'js/profile.js' %}"></script>
+{% endblock scripts %}
+{% endblock content %}

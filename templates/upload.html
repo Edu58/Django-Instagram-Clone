@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/upload.css' %}">
+{% endblock styles %}
+
+{% block title %} Upload {% endblock title %}
+
+{% block content %}
+<div class="mx-auto">
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            {{form.image_name}}
+        </div>
+        <div class="mb-3">
+            {{form.image}}
+        </div>
+        <div class="mb-3">
+            {{form.image_caption}}
+        </div>
+        <button type="submit" class="btn btn-primary w-100 fw-bold btn-sm">upload</button>
+    </form>
+</div>
+
+
+{% block scripts %}
+{{ block.super }}
+<script src="{% static 'js/upload.js' %}"></script>
+{% endblock scripts %}
+{% endblock content %}

@@ -13,25 +13,23 @@
     <div class="profile d-flex justify-content-around">
         <div class="dp pe-5">
             <img src="https://images.pexels.com/photos/60597/dahlia-red-blossom-bloom-60597.jpeg?cs=srgb&dl=pexels-pixabay-60597.jpg&fm=jpg"
-                 alt="">
+                alt="">
         </div>
 
         <div class="profile-info">
             <p class="fs-3 fw-light">
-                username
+                {{user.username}}
             </p>
 
             <div class="d-flex justify-content-between">
-                <p>134posts</p>
+                <p>{{ user.image.count }}posts</p>
                 <p>800followers</p>
                 <p>200following</p>
             </div>
 
             <div class="bio">
                 <small>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia nobis labore deserunt ex, quae
-                    perferendis itaque tempore officiis vitae voluptatibus atque quam aperiam perspiciatis animi
-                    expedita quod? Quibusdam saepe
+                    {{user.profile.bio}}
                 </small>
             </div>
         </div>
@@ -46,12 +44,13 @@
 
         <div class="posts">
             <img class="img-fluid"
-                 src="https://images.pexels.com/photos/60597/dahlia-red-blossom-bloom-60597.jpeg?cs=srgb&dl=pexels-pixabay-60597.jpg&fm=jpg"
-                 alt="">
+                src="https://images.pexels.com/photos/60597/dahlia-red-blossom-bloom-60597.jpeg?cs=srgb&dl=pexels-pixabay-60597.jpg&fm=jpg"
+                alt="">
             <img class="img-fluid"
-                 src="https://images.pexels.com/photos/60597/dahlia-red-blossom-bloom-60597.jpeg?cs=srgb&dl=pexels-pixabay-60597.jpg&fm=jpg"
-                 alt="">
+                src="https://images.pexels.com/photos/60597/dahlia-red-blossom-bloom-60597.jpeg?cs=srgb&dl=pexels-pixabay-60597.jpg&fm=jpg"
+                alt="">
         </div>
     </div>
 </section>
+
 {% endblock content %}

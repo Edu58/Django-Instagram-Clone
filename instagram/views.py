@@ -1,6 +1,7 @@
+from re import U
 from django.shortcuts import redirect, render
 from django.contrib.auth import login, logout, authenticate
-from .forms import SignUpForm, LoginUserForm
+from .forms import SignUpForm, LoginUserForm, ProfileForm, UploadForm
 from django.contrib import messages
 from .models import Image, Profile, Comments, Likes 
 
@@ -11,7 +12,13 @@ def home(request):
 
 
 def profile(request):
-    return render(request, 'profile.html')
+    form = ProfileForm()
+    return render(request, 'profile.html', {'form': form})
+
+
+def upload(request):
+    form = UploadForm
+    return render(request, 'upload.html', {'form': form})
 
 
 def signup_user(request):
@@ -40,6 +47,6 @@ def login_user(request):
         
         if user is not None:
             login(request, user)
-            return redirect('home')
+            return redirect('profile')
             
     return render(request, 'login.html', {'form': form})
