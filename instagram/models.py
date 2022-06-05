@@ -44,4 +44,4 @@ class Likes(models.Model):
     image = models.ForeignKey(Image, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.user
+        return self.user.username
