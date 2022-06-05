@@ -130,6 +130,7 @@ CLOUDINARY_STORAGE = {
 }
 
 MEDIA_URL = '/media/'  # or any prefix you choose
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Default primary key field type

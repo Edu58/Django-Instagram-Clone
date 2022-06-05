@@ -10,7 +10,7 @@
 
 {% block content %}
 <div class="upload">
-    <form action="" method="post">
+    <form action="{% url 'upload' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="mb-3">
             {{form.image_name}}
@@ -21,6 +21,7 @@
         <div class="mb-3">
             {{form.image_caption}}
         </div>
+        <p class="fs-3">{{ form.errors }}</p>
         <button type="submit" class="btn btn-primary w-100 fw-bold btn-sm">upload</button>
     </form>
 </div>

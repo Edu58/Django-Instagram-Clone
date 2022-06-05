@@ -21,6 +21,24 @@
                 {{user.username}}
             </p>
 
+            <form action="{% url 'upload' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-3">
+                    {{form.profile_photo}}
+                </div>
+                <div class="mb-3">
+                    {{form.bio}}
+                </div>
+                <div class="mb-3">
+                    {{form.birth_date}}
+                </div>
+                <div class="mb-3">
+                    {{form.location}}
+                </div>
+                <p class="fs-3">{{ form.errors }}</p>
+                <button type="submit" class="btn btn-primary w-100 fw-bold btn-sm">upload</button>
+            </form>
+
             <div class="d-flex justify-content-between">
                 <p>{{ user.image.count }}posts</p>
                 <p>800followers</p>
@@ -53,4 +71,8 @@
     </div>
 </section>
 
+{% block scripts %}
+{{ block.super }}
+<script src="{% static 'js/profile.js' %}"></script>
+{% endblock scripts %}
 {% endblock content %}

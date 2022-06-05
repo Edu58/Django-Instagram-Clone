@@ -29,6 +29,9 @@ class ProfileForm(ModelForm):
     class Meta:
         model = Profile
         fields = ['profile_photo', 'bio', 'location', 'birth_date']
+        widgets = {
+            'birth_date': forms.DateInput(attrs={'type': 'date'})
+        }
         
         
 

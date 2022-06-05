@@ -13,11 +13,26 @@ def home(request):
 
 def profile(request):
     form = ProfileForm()
+    
+    if request.method == "POST":
+        form = UploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+        
     return render(request, 'profile.html', {'form': form})
 
 
 def upload(request):
-    form = UploadForm
+    form = UploadForm()
+    
+    if request.method == "POST":
+        form = UploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+        
+        
     return render(request, 'upload.html', {'form': form})
 
 
