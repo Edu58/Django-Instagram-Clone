@@ -3,7 +3,7 @@
 
 {% block styles %}
 {{ block.super }}
-<link rel="stylesheet" href="{% static 'login.css' %}">
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
 {% endblock styles %}
 
 {% block title %} Login {% endblock title %}
@@ -72,4 +72,9 @@
             </div>
         </div>
     </section>
+
+{% block scripts %}
+{{ block.super }}
+<script src="{% static 'js/login.js' %}"></script>
+{% endblock scripts %}
 {% endblock content %}
