@@ -129,6 +129,9 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': config('CLOUD_API_SECRET')
 }
 
+MEDIA_URL = '/media/'  # or any prefix you choose
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
