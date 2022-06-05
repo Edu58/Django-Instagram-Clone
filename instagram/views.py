@@ -1,5 +1,7 @@
 from django.shortcuts import render
-
+from .forms import SignUpForm
+from django.contrib.auth.models import User
+from django.contrib import messages
 
 # Create your views here.
 def home(request):
@@ -11,7 +13,18 @@ def profile(request):
 
 
 def signup(request):
-    return render(request, 'signup.html')
+    form = SignUpForm()
+    
+    if request.method == "POST":
+        form = SignUpForm(request.POST)
+        
+        if form.is_valid():
+            form.save()
+            messages.success(request, f'Account created successfully')
+            return redirect('login')
+        
+        
+    return render(request, 'signup.html', {'form': form})
 
 
 def login(request):

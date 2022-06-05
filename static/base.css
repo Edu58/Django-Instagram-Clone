@@ -18,14 +18,14 @@ header nav .nav-icons button {
     font-size: 1.6rem;
 }
 
-section {
-    display: flex;
-    justify-content: center;
+section .content {
+display: flex;
+    margin: auto;
+    text-align: center;
 }
 
-section .content {
-    display: grid;
-    grid-template-columns: 2.5fr 1.5fr;
+section .center {
+    max-width: 30rem;
 }
 
 section .content .stories {
@@ -78,6 +78,11 @@ section .sidebar aside img {
 
 section .content .posts .card .post-image img {
     border-radius: 0 !important;
+}
+
+section .content .sidebar {
+    max-width: 15rem;
+    padding-left: -20rem;
 }
 
 @media screen and (max-width: 990px) {

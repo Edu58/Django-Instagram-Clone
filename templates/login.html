@@ -9,14 +9,14 @@
 {% block title %} Login {% endblock title %}
 
 {% block content %}
-<section class="container login d-flex justify-content-center align-items-center min-vh-100">
+<section class="container login d-flex justify-content-center align-items-center">
         <img src="{% static 'images/insta-login-phones.png' %}" alt="" srcset="">
 
         <div>
             <div class="card p-3" style="max-width: 22rem;">
                 <h5 class="card-title text-center fst-italic fw-bold mb-3">Instagram</h5>
                 <div class="card-body">
-                    <form>
+                    <form method="POST">
                         <div class="mb-3">
                             <input type="email" name="username" placeholder="username" class="form-control"
                                 id="username" aria-describedby="emailHelp">
@@ -45,7 +45,7 @@
                         </div>
 
                         <div class="mt-4 border-top border-bottom py-3 text-center">
-                            <small>Don't have an account? <a href="" class="fw-bold text-decoration-none">Sign
+                            <small>Don't have an account? <a href="{% url 'signup' %}" class="fw-bold text-decoration-none">Sign
                                     up</a></small>
                         </div>
 

@@ -7,6 +7,7 @@ cloudinary==1.29.0
 Django==4.0.5
 django-bootstrap5==21.3
 django-cloudinary-storage==0.3.0
+django-crispy-forms==1.14.0
 idna==3.3
 Pillow==9.1.1
 psycopg2==2.9.3
