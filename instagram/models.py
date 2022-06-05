@@ -18,7 +18,7 @@ class Image(models.Model):
     image_name = models.CharField(max_length=50, null=False, blank=False)
     image_caption = models.CharField(max_length=100, blank=False, null=False)
     created_on = models.DateField(auto_now_add=True)
-    likes = models.IntegerField(default=0)
+    reaction = models.IntegerField(default=0)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
 
     def __str__(self):
