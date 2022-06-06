@@ -97,7 +97,9 @@
                         <div class="card-title d-flex justify-content-between">
                             <div>
                                 <button class="btn"><i class='bx bx-heart fs-3'></i></button>
-                                <button class="btn"><i class='bx bx-message-rounded fs-3'></i></button>
+                                <button class="btn" type="button" class="btn text-light" data-bs-toggle="modal"
+                                    data-bs-target="#post{{post.id}}"><i
+                                        class='bx bx-message-rounded fs-3'></i></button>
                                 <button class="btn"><i class='bx bx-paper-plane fs-3'></i></button>
                             </div>
 
@@ -113,25 +115,80 @@
                             <small class="fs-light">{{ post.image_caption }}</small>
                         </p>
 
-                        <p class="card-text fw-light">
-                            <small class="fw-bold">bravo</small>
-                            <small>nice shot</small>
-                        </p>
+                        <div id="commentsdiv">
+                            <p class="card-text fw-light">
+                                {% if comments %}
+                                {% for comment in comments %}
+                                {% if comment.image.id == post.id %}
+                                <div>
+                                    <small class="fw-bold">{{ comment.profile.user.username }}</small>
+                                    <small class="fs-light">{{comment}}</small>
+                                </div>
+                                {% endif %}
+                                {% endfor %}
+                                {% endif %}
+                            </p>
+                        </div>
 
-                        <div>
-                            <form>
+                        <div class="pt-3">
+                            <form method="post" action="{% url 'comment' post.id %}">
+                                {% csrf_token %}
                                 <div class="input-group mb-3">
+                                    {{form.errors}}
                                     <span class="input-group-text">
                                         <i class='bx bxs-face'></i>
                                     </span>
-                                    <input type="text" class="form-control">
+                                    {{form.comment}}
                                     <span class="input-group-text">
-                                        <a href="" class="text-decoration-none">Post</a>
+                                        <button class="btn btn-sm">Post</a>
                                     </span>
                                 </div>
                             </form>
                         </div>
 
+                    </div>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="post{{post.id}}" tabindex="-1"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header bg-transparent">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body d-flex" style="display: grid; grid-template-columns: 1fr 1fr">
+                                <div style="max-width: 50%;">
+                                    <img src="{{ post.image.url }}" class="card-img-top img-fluid"
+                                        alt="{{ post.image_name }}">
+                                </div>
+
+                                <div class="mt-4 ms-4">
+                                    <div class="card-text">
+                                        <p class="card-text fw-light">
+                                            <span class="fw-bold fs-6 clearfix">Author</span>
+                                            <small class="fw-bold">{{ post.profile.user.username }}</small>
+                                            <small class="fs-light">{{ post.image_caption }}</small>
+                                        </p>
+                                       <div id="modalcomments" class="border px-1 rounded">
+                                            <p class="card-text fw-light">
+                                                {% if comments %}
+                                                {% for comment in comments %}
+                                                {% if comment.image.id == post.id %}
+                                                <div>
+                                                    <small class="fw-bold">{{ comment.profile.user.username }}</small>
+                                                    <small class="fs-light">{{comment}}</small>
+                                                </div>
+                                                {% endif %}
+                                                {% endfor %}
+                                                {% endif %}
+                                            </p>
+                                       </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 {% empty %}
@@ -205,4 +262,9 @@
         </div>
     </div>
 </section>
+
+{% block scripts %}
+{{ block.super }}
+<script src="{% static 'js/index.js' %}"></script>
+{% endblock scripts %}
 {% endblock content %}

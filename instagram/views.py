@@ -1,16 +1,17 @@
 from re import U
 from turtle import pos
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth import login, logout, authenticate
-from .forms import SignUpForm, LoginUserForm, ProfileForm, UploadForm
+from .forms import SignUpForm, LoginUserForm, ProfileForm, UploadForm, CommentForm
 from django.contrib import messages
 from .models import Image, Profile, Comments, Likes 
 
 # Create your views here.
 def home(request):
+    form = CommentForm()
     all_posts = Image.objects.all()
-    print(all_posts)
-    return render(request, 'index.html', {'posts': all_posts})
+    comments = Comments.objects.all()
+    return render(request, 'index.html', {'posts': all_posts, 'form': form, 'comments': comments})
 
 
 def profile(request):
@@ -23,6 +24,23 @@ def profile(request):
             return redirect('profile')
         
     return render(request, 'profile.html', {'form': form})
+
+
+def comment(request, image_id):
+    form = CommentForm()
+    current_user = request.user.profile
+    image = Image.objects.get(id=image_id)
+    
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.profile = current_user
+            comment.image = image
+            comment.save()
+        return redirect('home')
+        
+    return render(request, 'index.html', {'form': form})
 
 
 def upload(request):

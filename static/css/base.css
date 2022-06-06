@@ -18,6 +18,12 @@ header nav .nav-icons a i {
     font-size: 1.6rem;
 }
 
+header nav .nav-icons a img {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+}
+
 section .content .center {
     max-width: 30rem;
 }
@@ -47,6 +53,27 @@ section .aside img {
     height: 3rem;
     width: 3rem;
     border-radius: 50%;
+}
+
+#commentsdiv {
+    max-height: 5rem;
+    overflow-wrap: normal;
+    overflow-y: scroll;
+}
+
+#modalcomments {
+    height: 25rem;
+    width: 25rem;
+    overflow-wrap: normal;
+    overflow-y: scroll;
+}
+
+#modalcomments::-webkit-scrollbar {
+    display: none;
+}
+
+#commentsdiv::-webkit-scrollbar {
+    display: none;
 }
 
 

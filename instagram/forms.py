@@ -2,7 +2,7 @@ from django import forms
 from django.forms import DateField, ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Profile, Image
+from .models import Profile, Image, Comments
 
 
 class SignUpForm(UserCreationForm):
@@ -35,4 +35,11 @@ class UploadForm(forms.ModelForm):
     class Meta:
         model = Image
         fields = ['image_name', 'image', 'image_caption', 'reaction', 'profile']
-        exclude = ['profile']
+        exclude = ['profile', 'created_on']
+        
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comments
+        fields = ['comment', 'image']
+        exclude = ['profile', 'created_on', 'image']
