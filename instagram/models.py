@@ -48,8 +48,8 @@ class Comments(models.Model):
 
 class Likes(models.Model):
     created_on = models.DateField(auto_now_add=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    image = models.ForeignKey(Image, on_delete=models.CASCADE)
+    user = models.ForeignKey(Profile, related_name='mylikes', on_delete=models.CASCADE)
+    image = models.ForeignKey(Image, related_name='photolikes', on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.user.username
+        return self.profile.user.username
