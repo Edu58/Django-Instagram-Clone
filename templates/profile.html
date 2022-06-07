@@ -24,6 +24,13 @@
             <p class="fs-3 fw-light">
                 {{user.username}}
             </p>
+            {% if user.is_authenticated %}
+            <div>
+                <a href="{% url 'logout' %}">
+                    <button type="button" class="btn btn-danger">logout</button>
+                </a>
+            </div>
+            {% endif %}
 
             {{user.profile.bio}}
 
@@ -73,11 +80,11 @@
 
         <div class="posts">
             <img class="img-fluid"
-                src="https://images.pexels.com/photos/60597/dahlia-red-blossom-bloom-60597.jpeg?cs=srgb&dl=pexels-pixabay-60597.jpg&fm=jpg"
-                alt="">
+                 src="https://images.pexels.com/photos/60597/dahlia-red-blossom-bloom-60597.jpeg?cs=srgb&dl=pexels-pixabay-60597.jpg&fm=jpg"
+                 alt="">
             <img class="img-fluid"
-                src="https://images.pexels.com/photos/60597/dahlia-red-blossom-bloom-60597.jpeg?cs=srgb&dl=pexels-pixabay-60597.jpg&fm=jpg"
-                alt="">
+                 src="https://images.pexels.com/photos/60597/dahlia-red-blossom-bloom-60597.jpeg?cs=srgb&dl=pexels-pixabay-60597.jpg&fm=jpg"
+                 alt="">
         </div>
     </div>
 </section>
