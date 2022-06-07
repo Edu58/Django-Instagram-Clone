@@ -14,57 +14,16 @@
 
         <div class="center d-flex justify-content-center align-items-center flex-column me-4">
             <div class="container stories d-flex border p-4 d-flex rounded-3">
-                <a href="#">
-                    <img src="https://images.pexels.com/photos/60597/dahlia-red-blossom-bloom-60597.jpeg?cs=srgb&dl=pexels-pixabay-60597.jpg&fm=jpg"
-                        alt="" srcset="">
-                    <small>pete</small>
-                </a>
-
-                <a href="#">
-                    <img src="https://images.pexels.com/photos/60597/dahlia-red-blossom-bloom-60597.jpeg?cs=srgb&dl=pexels-pixabay-60597.jpg&fm=jpg"
-                        alt="" srcset="">
-                    <small>pete</small>
-                </a>
-                <a href="#">
-                    <img src="https://images.pexels.com/photos/60597/dahlia-red-blossom-bloom-60597.jpeg?cs=srgb&dl=pexels-pixabay-60597.jpg&fm=jpg"
-                        alt="" srcset="">
-                    <small>pete</small>
-                </a>
-                <a href="#">
-                    <img src="https://images.pexels.com/photos/60597/dahlia-red-blossom-bloom-60597.jpeg?cs=srgb&dl=pexels-pixabay-60597.jpg&fm=jpg"
-                        alt="" srcset="">
-                    <small>pete</small>
-                </a>
-                <a href="#">
-                    <img src="https://images.pexels.com/photos/60597/dahlia-red-blossom-bloom-60597.jpeg?cs=srgb&dl=pexels-pixabay-60597.jpg&fm=jpg"
-                        alt="" srcset="">
-                    <small>pete</small>
-                </a>
-                <a href="#">
-                    <img src="https://images.pexels.com/photos/60597/dahlia-red-blossom-bloom-60597.jpeg?cs=srgb&dl=pexels-pixabay-60597.jpg&fm=jpg"
-                        alt="" srcset="">
-                    <small>pete</small>
-                </a>
-                <a href="#">
-                    <img src="https://images.pexels.com/photos/60597/dahlia-red-blossom-bloom-60597.jpeg?cs=srgb&dl=pexels-pixabay-60597.jpg&fm=jpg"
-                        alt="" srcset="">
-                    <small>pete</small>
-                </a>
-                <a href="#">
-                    <img src="https://images.pexels.com/photos/60597/dahlia-red-blossom-bloom-60597.jpeg?cs=srgb&dl=pexels-pixabay-60597.jpg&fm=jpg"
-                        alt="" srcset="">
-                    <small>pete</small>
-                </a>
-                <a href="#">
-                    <img src="https://images.pexels.com/photos/60597/dahlia-red-blossom-bloom-60597.jpeg?cs=srgb&dl=pexels-pixabay-60597.jpg&fm=jpg"
-                        alt="" srcset="">
-                    <small>pete</small>
-                </a>
-                <a href="#">
-                    <img src="https://images.pexels.com/photos/60597/dahlia-red-blossom-bloom-60597.jpeg?cs=srgb&dl=pexels-pixabay-60597.jpg&fm=jpg"
-                        alt="" srcset="">
-                    <small>pete</small>
-                </a>
+                {% for people in all_users %}
+                {% if people.profile_photo %}
+                <div class="d-flex flex-column text-center">
+                    <a href="{% url 'profile' %}">
+                        <img class="img-fluid" src="{{ people.profile_photo.url }}" />
+                    </a>
+                    <small>{{people}}</small>
+                </div>
+                {% endif %}
+                {% endfor %}
             </div>
 
 
