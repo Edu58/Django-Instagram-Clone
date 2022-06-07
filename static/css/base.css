@@ -24,6 +24,10 @@ header nav .nav-icons a img {
     border-radius: 50%;
 }
 
+header nav form input::placeholder {
+    opacity: 0 !important;
+}
+
 section .content .center {
     max-width: 30rem;
 }

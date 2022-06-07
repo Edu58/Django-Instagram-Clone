@@ -27,13 +27,16 @@
 
             {% if user.is_authenticated %}
             <div class="search pt-2">
-                <form class="d-flex">
+                <form action="{% url 'search' %}" method="post" class="d-flex">
+                    {% csrf_token %}
                     <div class="input-group mb-3">
                             <span class="input-group-text" id="basic-addon1">
-                                <i class='bx bx-search'></i>
+                                <button type="submit" class="btn btn-sm">
+                                    <i class='bx bx-search fw-bold'></i>
+                                </button>
                             </span>
-                        <input type="text" class="form-control shadow-none bg-light" placeholder="Search"
-                               aria-label="Username" aria-describedby="basic-addon1">
+                        <input type="text" name="term" class="form-control shadow-none bg-light" placeholder="Search"
+                               aria-label="Username" required>
                     </div>
                 </form>
             </div>

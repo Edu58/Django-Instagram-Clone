@@ -36,6 +36,11 @@ class Image(models.Model):
 
     def delete_image(self):
         self.delete()
+      
+    @classmethod
+    def search_by_name(cls, search_term):
+        image = cls.objects.filter(image_name__icontains=search_term)
+        return image
 
     def __str__(self):
         return self.image_name

@@ -1,3 +1,4 @@
+import re
 from django.shortcuts import get_object_or_404, redirect, render
 from .forms import SignUpForm, LoginUserForm, ProfileForm, UploadForm, CommentForm
 from django.contrib import messages
@@ -98,3 +99,17 @@ def login_user(request):
 def logout_user(request):
     logout(request)
     return redirect('login')
+
+
+@login_required(login_url='login')
+def search(request):
+    
+    if request.method == "POST":
+        term = request.POST.get('term')
+        
+        image = Image.search_by_name(term)
+        
+        if image:
+            print(image)
+    
+    return redirect('home')
