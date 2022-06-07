@@ -12,7 +12,7 @@
 <section class="container d-flex flex-column justify-content-center align-items-center">
     <div class="profile d-flex justify-content-around">
         <div class="dp pe-5">
-            {% if user.profile %}
+            {% if user.profile.profile_photo %}
             <img src="{{ user.profile.profile_photo.url }}" alt="">
             {% else %}
 

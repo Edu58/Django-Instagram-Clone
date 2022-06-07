@@ -43,9 +43,12 @@
                 <a href="{% url 'upload' %}" class="btn"><i class='bx bx-message-square-add fs-3'></i></a>
                 <a href="{% url 'profile' %}" class="btn"><i class='bx bx-compass fs-3'></i></a>
                 <a href="{% url 'upload' %}" class="btn"><i class='bx bx-heart fs-3'></i></a>
+                {% if user.profile.profile_photo %}
                 <a href="{% url 'profile' %}">
                     <img class="img-fluid" src="{{ user.profile.profile_photo.url }}"/>
                 </a>
+                {% endif %}
+
             </div>
             {% endif %}
         </div>
