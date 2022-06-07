@@ -82,13 +82,15 @@
             POSTS
         </p>
 
+
         <div class="posts">
+            {% for post in posts %}
+            {% if post.profile == user.profile %}
             <img class="img-fluid"
-                 src="https://images.pexels.com/photos/60597/dahlia-red-blossom-bloom-60597.jpeg?cs=srgb&dl=pexels-pixabay-60597.jpg&fm=jpg"
-                 alt="">
-            <img class="img-fluid"
-                 src="https://images.pexels.com/photos/60597/dahlia-red-blossom-bloom-60597.jpeg?cs=srgb&dl=pexels-pixabay-60597.jpg&fm=jpg"
-                 alt="">
+                src="{{ post.image.url }}"
+                alt="">
+            {% endif %}
+            {% endfor %}
         </div>
     </div>
 </section>

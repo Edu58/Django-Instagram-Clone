@@ -21,6 +21,8 @@ def home(request):
 @login_required(login_url='login')
 def profile(request):
     form = ProfileForm()
+    
+    all_posts = Image.objects.all()
 
     if request.method == "POST":
         form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
@@ -28,7 +30,7 @@ def profile(request):
             form.save()
             return redirect('profile')
 
-    return render(request, 'profile.html', {'form': form})
+    return render(request, 'profile.html', {'form': form, 'posts': all_posts,})
 
 
 @login_required(login_url='login')
