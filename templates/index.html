@@ -59,7 +59,9 @@
                     <div class="card-body">
                         <div class="card-title d-flex justify-content-between">
                             <div>
-                                <button class="btn"><i class='bx bx-heart fs-3'></i></button>
+                                <a href="{% url 'like' user.id post.id %}">
+                                    <button class="btn"><i class='bx bx-heart fs-3'></i></button>
+                                </a>
                                 <button class="btn" type="button" class="btn text-light" data-bs-toggle="modal"
                                     data-bs-target="#post{{post.id}}"><i
                                         class='bx bx-message-rounded fs-3'></i></button>
@@ -71,7 +73,14 @@
                             </div>
                         </div>
                         <p class="fw-bold">
-                            {{ post.reaction }} likes
+                            likes - 
+                            {% if likes %}
+                            {% for like in likes %}
+                            {% if like.image.id == post.id %}
+                            {{like.user.username}}
+                            {% endif %}
+                            {% endfor %}
+                            {% endif %}
                         </p>
                         <p class="card-text fw-light">
                             <small class="fw-bold">{{ post.profile.user.username }}</small>

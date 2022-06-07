@@ -35,7 +35,7 @@ class ProfileForm(forms.ModelForm):
 class UploadForm(forms.ModelForm):
     class Meta:
         model = Image
-        fields = ['image_name', 'image', 'image_caption', 'reaction', 'profile']
+        fields = ['image_name', 'image', 'image_caption', 'profile']
         exclude = ['profile', 'created_on']
 
 
