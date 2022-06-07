@@ -13,6 +13,11 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
 
+    def save_profile(self):
+        self.save()
+
+    def delete_profile(self):
+        self.delete()e
 
 class Image(models.Model):
     image = models.ImageField(upload_to='photo/', blank=False, null=False)
@@ -45,6 +50,12 @@ class Comments(models.Model):
     def __str__(self):
         return self.comment
 
+    def save_comment(self):
+        self.save()
+
+    def delete_comment(self):
+        self.delete()
+
 
 class Likes(models.Model):
     created_on = models.DateField(auto_now_add=True)
@@ -53,3 +64,9 @@ class Likes(models.Model):
 
     def __str__(self):
         return self.profile.user.username
+
+    def save_like(self):
+        self.save()
+
+    def delete_like(self):
+        self.delete()
