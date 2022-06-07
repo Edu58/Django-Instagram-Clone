@@ -13,7 +13,8 @@ def home(request):
     all_users = Profile.objects.all()
     all_posts = Image.objects.all()
     comments = Comments.objects.all()
-    return render(request, 'index.html', {'posts': all_posts, 'form': form, 'comments': comments, 'users': all_users})
+    return render(request, 'index.html',
+                  {'posts': all_posts, 'form': form, 'comments': comments, 'all_users': all_users})
 
 
 @login_required(login_url='login')

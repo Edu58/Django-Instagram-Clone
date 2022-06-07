@@ -219,16 +219,16 @@
                 <div class="mt-5 suggestinons">
                     <p class="text-secondary">Suggestions For You</p>
 
-                    {% for user in users %}
+                    {% for people in all_users %}
                     <div class="d-flex justify-content-between mb-3">
                         <div class="d-flex">
-                            {% if user.profile.profile_photo %}
+                            {% if people.profile_photo %}
                             <a href="">
-                                <img class="img-fluid" src="{{ user.profile.profile_photo.url }}"/>
+                                <img class="img-fluid" src="{{ people.profile_photo.url }}"/>
                             </a>
                             {% endif %}
                             <div class="ms-3 d-flex flex-column">
-                                <span class="fw-bold">{{ user.profile.username }}</span>
+                                <span class="fw-bold">{{ people }}</span>
                                 <span>New to instagram</span>
                             </div>
                         </div>
@@ -237,33 +237,6 @@
                     </div>
                     {% endfor %}
 
-<!--                    <div class="d-flex justify-content-between mb-3">-->
-<!--                        <div class="d-flex">-->
-<!--                            <img class=""-->
-<!--                                src="https://images.pexels.com/photos/60597/dahlia-red-blossom-bloom-60597.jpeg?cs=srgb&dl=pexels-pixabay-60597.jpg&fm=jpg"-->
-<!--                                alt="">-->
-<!--                            <div class="ms-3 d-flex flex-column">-->
-<!--                                <span class="fw-bold">username</span>-->
-<!--                                <span>New to instagram</span>-->
-<!--                            </div>-->
-<!--                        </div>-->
-
-<!--                        <a href="#" class="text-decoration-none fw-bold">follow</a>-->
-<!--                    </div>-->
-
-<!--                    <div class="d-flex justify-content-between mb-3">-->
-<!--                        <div class="d-flex">-->
-<!--                            <img class=""-->
-<!--                                src="https://images.pexels.com/photos/60597/dahlia-red-blossom-bloom-60597.jpeg?cs=srgb&dl=pexels-pixabay-60597.jpg&fm=jpg"-->
-<!--                                alt="">-->
-<!--                            <div class="ms-3 d-flex flex-column">-->
-<!--                                <span class="fw-bold">username</span>-->
-<!--                                <span>New to instagram</span>-->
-<!--                            </div>-->
-<!--                        </div>-->
-
-<!--                        <a href="#" class="text-decoration-none fw-bold">follow</a>-->
-<!--                    </div>-->
                 </div>
             </div>
 
