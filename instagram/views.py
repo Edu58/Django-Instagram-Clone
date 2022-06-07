@@ -1,7 +1,4 @@
-from re import U
-from turtle import pos
 from django.shortcuts import get_object_or_404, redirect, render
-from django.contrib.auth import login, logout, authenticate
 from .forms import SignUpForm, LoginUserForm, ProfileForm, UploadForm, CommentForm
 from django.contrib import messages
 from .models import Image, Profile, Comments, Likes
