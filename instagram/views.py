@@ -110,6 +110,11 @@ def search(request):
         image = Image.search_by_name(term)
         
         if image:
-            print(image)
+            form = CommentForm()
+            all_users = Profile.objects.all()
+            all_posts = image
+            comments = Comments.objects.all()
+            return render(request, 'index.html',
+                        {'posts': all_posts, 'form': form, 'comments': comments, 'all_users': all_users})
     
     return redirect('home')
