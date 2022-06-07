@@ -9,19 +9,20 @@ class SignUpForm(UserCreationForm):
     username = forms.CharField(required=True)
     email = forms.EmailField(required=True)
     password2 = forms.EmailField(required=False)
+
     class Meta:
         model = User
-        fields = ['email', 'first_name', 'last_name','username', 'password1']
-        
-        
+        fields = ['email', 'first_name', 'last_name', 'username', 'password1']
+
+
 class LoginUserForm(UserCreationForm):
     username = forms.CharField(required=True)
+
     class Meta:
         model = User
         fields = ['username', 'password1']
-        
-    
-    
+
+
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
@@ -29,14 +30,14 @@ class ProfileForm(forms.ModelForm):
         widgets = {
             'birth_date': forms.DateInput(attrs={'type': 'date'})
         }
-        
+
 
 class UploadForm(forms.ModelForm):
     class Meta:
         model = Image
         fields = ['image_name', 'image', 'image_caption', 'reaction', 'profile']
         exclude = ['profile', 'created_on']
-        
+
 
 class CommentForm(forms.ModelForm):
     class Meta:

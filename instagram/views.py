@@ -10,9 +10,10 @@ from django.contrib.auth.decorators import login_required
 @login_required(login_url='login')
 def home(request):
     form = CommentForm()
+    all_users = Profile.objects.all()
     all_posts = Image.objects.all()
     comments = Comments.objects.all()
-    return render(request, 'index.html', {'posts': all_posts, 'form': form, 'comments': comments})
+    return render(request, 'index.html', {'posts': all_posts, 'form': form, 'comments': comments, 'users': all_users})
 
 
 @login_required(login_url='login')
