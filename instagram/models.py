@@ -9,7 +9,7 @@ class Profile(models.Model):
     bio = models.TextField(max_length=500, blank=True)
     birth_date = models.DateField(null=False, blank=False)
     location = models.CharField(max_length=30, null=True, blank=True)
-    
+
     def __str__(self):
         return self.user.username
 
@@ -17,7 +17,8 @@ class Profile(models.Model):
         self.save()
 
     def delete_profile(self):
-        self.delete()e
+        self.delete()
+
 
 class Image(models.Model):
     image = models.ImageField(upload_to='photo/', blank=False, null=False)
@@ -27,13 +28,12 @@ class Image(models.Model):
     reaction = models.IntegerField(default=0, null=True, blank=True)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
 
-    
     class Meta:
         ordering = ['-created_on']
-        
+
     def save_image(self):
         self.save()
-        
+
     def delete_image(self):
         self.delete()
 
@@ -44,7 +44,7 @@ class Image(models.Model):
 class Comments(models.Model):
     comment = models.CharField(max_length=200, null=False, blank=False)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    image = models.ForeignKey(Image, on_delete=models.CASCADE,related_name="comments")
+    image = models.ForeignKey(Image, on_delete=models.CASCADE, related_name="comments")
     created_on = models.DateField(auto_now_add=True)
 
     def __str__(self):
