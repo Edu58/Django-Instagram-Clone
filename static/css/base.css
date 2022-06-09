@@ -33,7 +33,7 @@ section .content .center {
 }
 
 section .content .center .stories {
-    max-width: 30rem;
+    max-width: 5rem;
     overflow-x: scroll;
 }
 
