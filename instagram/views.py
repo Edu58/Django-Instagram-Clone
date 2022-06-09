@@ -119,7 +119,7 @@ def login_user(request):
 
         if user is not None:
             login(request, user)
-            return redirect('profile')
+            return redirect('home')
 
     return render(request, 'login.html', {'form': form})
 
