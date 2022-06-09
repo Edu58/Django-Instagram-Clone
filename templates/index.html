@@ -33,9 +33,9 @@
                 <div class="card mb-3">
                     <div class="card-header d-flex justify-content-between align-items-center bg-transparent">
                         <div class="d-flex">
-                            {% if user.profile.profile_photo %}
+                            {% if post.profile.profile_photo %}
                             <a href="{% url 'profile' %}">
-                                <img class="img-fluid" src="{{ user.profile.profile_photo.url }}" />
+                                <img class="img-fluid" src="{{ post.profile.profile_photo.url }}" />
                             </a>
                             {% endif %}
                             <div class="d-flex flex-column ms-4">
