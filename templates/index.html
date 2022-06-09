@@ -59,7 +59,7 @@
                     <div class="card-body">
                         <div class="card-title d-flex justify-content-between">
                             <div>
-                                <a href="{% url 'like' user.id post.id %}">
+                                <a href="{% url 'like' post.id %}">
                                     <button class="btn"><i class='bx bx-heart fs-3'></i></button>
                                 </a>
                                 <button class="btn" type="button" class="btn text-light" data-bs-toggle="modal"
@@ -73,14 +73,7 @@
                             </div>
                         </div>
                         <p class="fw-bold">
-                            likes - 
-                            {% if likes %}
-                            {% for like in likes %}
-                            {% if like.image.id == post.id %}
-                            {{like.user.username}}
-                            {% endif %}
-                            {% endfor %}
-                            {% endif %}
+                            {{post.likes_set.all|length}} likes
                         </p>
                         <p class="card-text fw-light">
                             <small class="fw-bold">{{ post.profile.user.username }}</small>

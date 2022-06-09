@@ -1,7 +1,8 @@
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, redirect, render
-from .forms import SignUpForm, LoginUserForm, ProfileForm, UploadForm, CommentForm
+from .forms import ProfileUpdateForm, SignUpForm, LoginUserForm, ProfileForm, UploadForm, CommentForm, UserUpdateForm
 from django.contrib import messages
+from django.urls import reverse
 from .models import Image, Profile, Comments, Likes
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
@@ -21,17 +22,31 @@ def home(request):
 
 @login_required(login_url='login')
 def profile(request):
-    form = ProfileForm()
-    
     all_posts = Image.objects.all()
+    return render(request, 'profile.html', {'posts': all_posts,})
+
+
+@login_required(login_url='login')
+def update_profile(request):
 
     if request.method == "POST":
-        form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
-        if form.is_valid():
-            form.save()
-            return redirect('profile')
+        user_form = UserUpdateForm(request.POST, instance=request.user)
+        profile_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
 
-    return render(request, 'profile.html', {'form': form, 'posts': all_posts,})
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            return redirect('profile')
+    else:
+        user_form = UserUpdateForm(instance=request.user)
+        profile_form = ProfileUpdateForm(instance=request.user.profile)
+
+    context = {
+        'user_form': user_form,
+        'prof_form': profile_form
+    }
+
+    return render(request, 'update-profile.html', context)
 
 
 @login_required(login_url='login')
@@ -122,16 +137,28 @@ def search(request):
     
     return redirect('home')
 
-@login_required(login_url='login')
-def like_image(request,user_id,post_id):
+# @login_required(login_url='login')
+# def like_image(request,user_id,post_id):
     
-    user_voting = User.objects.get(id=user_id)
-    image_voted = Image.objects.get(id=post_id)
+#     user_voting = User.objects.get(id=user_id)
+#     image_voted = Image.objects.get(id=post_id)
 
-    new_like = Likes(
-        user=user_voting,
-        image=image_voted
-    )
-    new_like.save_like()
+#     new_like = Likes(
+#         user=user_voting,
+#         image=image_voted
+#     )
+#     new_like.save_like()
 
-    return redirect('home')
+#     return redirect('home')
+
+
+@login_required(login_url='login')
+def like_post(request, post_id):
+    post = get_object_or_404(Image, pk=post_id)
+
+    new_like, created = Likes.objects.get_or_create(user=request.user, image=post)
+
+    if not created:
+        new_like.delete()
+
+    return redirect(reverse('home'))

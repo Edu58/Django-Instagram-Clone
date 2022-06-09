@@ -15,8 +15,6 @@
             {% if user.profile.profile_photo %}
             <img src="{{ user.profile.profile_photo.url }}" alt="">
             {% else %}
-
-            No photo
             {% endif %}
         </div>
 
@@ -27,7 +25,11 @@
             {% if user.is_authenticated %}
             <div>
                 <a href="{% url 'logout' %}">
-                    <button type="button" class="btn btn-danger">logout</button>
+                    <button type="button" class="btn btn-sm btn-danger">logout</button>
+                </a>
+
+                <a href="{% url 'update_profile' %}">
+                    <button type="button" class="btn btn-primary btn-sm">update</button>
                 </a>
             </div>
             {% endif %}
@@ -51,26 +53,6 @@
                 </small>
             </div>
 
-            {% else %}
-            <p class="fs-5">update profile</p>
-            {{user.id}}
-            <form action="{% url 'profile' %}" method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div class="mb-3">
-                    {{form.profile_photo}}
-                </div>
-                <div class="mb-3">
-                    {{form.bio}}
-                </div>
-                <div class="mb-3">
-                    {{form.birth_date}}
-                </div>
-                <div class="mb-3">
-                    {{form.location}}
-                </div>
-                <p class="fs-3">{{ form.errors }}</p>
-                <button type="submit" class="btn btn-primary w-100 fw-bold btn-sm">upload</button>
-            </form>
             {% endif %}
         </div>
 

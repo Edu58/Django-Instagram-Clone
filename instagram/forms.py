@@ -1,5 +1,4 @@
 from django import forms
-from django.forms import DateField, ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import Profile, Image, Comments
@@ -44,3 +43,16 @@ class CommentForm(forms.ModelForm):
         model = Comments
         fields = ['comment', 'image']
         exclude = ['profile', 'created_on', 'image']
+
+
+class UserUpdateForm(forms.ModelForm):
+    email= forms.EmailField()
+    class Meta:
+        model = User
+        fields = ["username","email"]
+
+
+class ProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ["profile_photo", "birth_date", "bio", "location"]

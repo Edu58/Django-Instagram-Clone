@@ -1,20 +1,37 @@
 {% extends 'base.html' %}
+{% load django_bootstrap5 %}
 {% load static %}
-
-{% block styles %}
-{{ block.super }}
-<link rel="stylesheet" href="{% static 'css/update-profile.css' %}">
-{% endblock styles %}
 
 {% block title %} Update Profile {% endblock title %}
 
 {% block content %}
 
+<div class="container w-50">
+    {% if form.errors %}
+    {% bootstrap_form_errors form layout='inline' %}
+    {% endif %}
+    <div class="card">
 
+        <div class="card-header">
+            <h3 class="text-center">Update Profile</h3>
+        </div>
+        <div class="card-body bg-light">
 
+            <form action="{% url 'profile' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% bootstrap_field user_form.username layout='floating' %}
+                {% bootstrap_field user_form.email layout='floating' %}
+                {% bootstrap_field prof_form.profile_photo %}
+                {% bootstrap_field prof_form.birth_date layout='floating' %}
+                {% bootstrap_field prof_form.location layout='floating' %}
+                {% bootstrap_field prof_form.bio layout='floating' %}
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary w-100">update</button>
+                </div>
+        </div>
+        </form>
 
-{% block scripts %}
-{{ block.super }}
-<script src="{% static 'js/profile.js' %}"></script>
-{% endblock scripts %}
+    </div>
+
+</div>
 {% endblock content %}
