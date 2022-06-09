@@ -1,3 +1,4 @@
+from operator import pos
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, redirect, render
 from .forms import ProfileUpdateForm, SignUpForm, LoginUserForm, ProfileForm, UploadForm, CommentForm, UserUpdateForm
@@ -15,9 +16,8 @@ def home(request):
     all_users = Profile.objects.all()
     all_posts = Image.objects.all()
     comments = Comments.objects.all()
-    all_likes = Likes.objects.all()
     return render(request, 'index.html',
-                  {'posts': all_posts, 'form': form, 'comments': comments, 'all_users': all_users, 'likes': all_likes})
+                  {'posts': all_posts, 'form': form, 'comments': comments, 'all_users': all_users})
 
 
 @login_required(login_url='login')
@@ -83,6 +83,17 @@ def upload(request):
     return render(request, 'upload.html', {'form': form})
 
 
+@login_required(login_url='login')
+def delete_post(request, post_id):
+    post = get_object_or_404(Image, pk=post_id)
+
+    if post:
+        post.delete()
+        return redirect('home')
+    
+    return redirect('home')
+
+
 def signup_user(request):
     form = SignUpForm()
 
@@ -137,19 +148,7 @@ def search(request):
     
     return redirect('home')
 
-# @login_required(login_url='login')
-# def like_image(request,user_id,post_id):
-    
-#     user_voting = User.objects.get(id=user_id)
-#     image_voted = Image.objects.get(id=post_id)
 
-#     new_like = Likes(
-#         user=user_voting,
-#         image=image_voted
-#     )
-#     new_like.save_like()
-
-#     return redirect('home')
 
 
 @login_required(login_url='login')

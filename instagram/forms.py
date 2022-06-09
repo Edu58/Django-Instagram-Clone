@@ -53,6 +53,7 @@ class UserUpdateForm(forms.ModelForm):
 
 
 class ProfileUpdateForm(forms.ModelForm):
+    birth_date = forms.DateField()
     class Meta:
         model = Profile
         fields = ["profile_photo", "birth_date", "bio", "location"]

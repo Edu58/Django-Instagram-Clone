@@ -19,32 +19,24 @@
         </div>
 
         <div class="profile-info">
-            <p class="fs-3 fw-light">
-                {{user.username}}
+            <p class="fs-5 fw-bold">
+                {{user.username}} <a href="{% url 'update_profile' %}">
+                    <button type="button" class="btn btn-light btn-sm border ms-1">Edit Profile</button>
+                </a>
             </p>
             {% if user.is_authenticated %}
             <div>
                 <a href="{% url 'logout' %}">
                     <button type="button" class="btn btn-sm btn-danger">logout</button>
                 </a>
-
-                <a href="{% url 'update_profile' %}">
-                    <button type="button" class="btn btn-primary btn-sm">update</button>
-                </a>
             </div>
             {% endif %}
 
-            <div class="my-2">
-                <p>
-                    {{user.profile.bio}}
-                </p>
-            </div>
-
             {% if user.profile.bio %}
-            <div class="d-flex justify-content-between">
-                <p>{{ user.image.count }}posts</p>
-                <p>800followers</p>
-                <p>200following</p>
+            <div class="d-flex justify-content-between mt-3">
+                <p class="fw-bold">{{ user.profile.image_set.all|length }} posts</p>
+                <p class="ms-2 fw-bold">800 followers</p>
+                <p class="ms-2 fw-bold">200 following</p>
             </div>
 
             <div class="bio">
@@ -66,13 +58,13 @@
 
 
         <div class="posts">
-            {% for post in posts %}
-            {% if post.profile == user.profile %}
-            <img class="img-fluid"
-                src="{{ post.image.url }}"
-                alt="">
-            {% endif %}
+            {% if user.profile.image_set.all %}
+            {% for post in user.profile.image_set.all %}
+            <img class="img-fluid" src="{{ post.image.url }}" alt="">
             {% endfor %}
+            {% else %}
+            <p class="mt-4">You have no posts</p>
+            {% endif %}
         </div>
     </div>
 </section>

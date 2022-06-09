@@ -4,6 +4,8 @@
 {% block styles %}
 {{ block.super }}
 <link rel="stylesheet" href="{% static 'css/base.css' %}">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 {% endblock styles %}
 
 {% block title %} Instagram {% endblock title %}
@@ -35,7 +37,7 @@
                         <div class="d-flex">
                             {% if user.profile.profile_photo %}
                             <a href="{% url 'profile' %}">
-                                <img class="img-fluid" src="{{ user.profile.profile_photo.url }}"/>
+                                <img class="img-fluid" src="{{ user.profile.profile_photo.url }}" />
                             </a>
                             {% endif %}
                             <div class="d-flex flex-column ms-4">
@@ -48,9 +50,15 @@
                             </div>
                         </div>
 
-                        <a href="" class="text-dark">
-                            <i class='bx bx-dots-horizontal-rounded fs-3'></i>
-                        </a>
+
+                        {% if user.id == post.profile.user.id %}
+                        <div>
+                            <a href="{% url 'delete' post.id %}">
+                                <i class='bx bx-trash fs-4  text-danger'></i>
+                            </a>
+                        </div>
+                        {% endif %}
+
                     </div>
                     <div class="post-image">
                         <img src="{{ post.image.url }}" class="card-img-top img-fluid" alt="{{ post.image_name }}"
@@ -82,15 +90,17 @@
 
                         <div id="commentsdiv">
                             <p class="card-text fw-light">
-                                {% if comments %}
-                                {% for comment in comments %}
-                                {% if comment.image.id == post.id %}
+                                {% if post.comments.all %}
+                                {% for comment in post.comments.all %}
                                 <div>
-                                    <small class="fw-bold">{{ comment.profile.user.username }}</small>
+                                    <small class="fw-bold">{{ comment.profile.user }}</small>
                                     <small class="fs-light">{{comment}}</small>
                                 </div>
-                                {% endif %}
                                 {% endfor %}
+                                {% else %}
+                                <div>
+                                    <small class="fw-bold">no comments</small>
+                                </div>
                                 {% endif %}
                             </p>
                         </div>
@@ -115,8 +125,8 @@
                 </div>
 
                 <!-- Modal -->
-                <div class="modal fade" id="post{{post.id}}" tabindex="-1"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="post{{post.id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header bg-transparent">
@@ -136,7 +146,7 @@
                                             <small class="fw-bold">{{ post.profile.user.username }}</small>
                                             <small class="fs-light">{{ post.image_caption }}</small>
                                         </p>
-                                       <div id="modalcomments" class="border px-1 rounded">
+                                        <div id="modalcomments" class="border px-1 rounded">
                                             <p class="card-text fw-light">
                                                 {% if comments %}
                                                 {% for comment in comments %}
@@ -149,7 +159,7 @@
                                                 {% endfor %}
                                                 {% endif %}
                                             </p>
-                                       </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -167,10 +177,10 @@
             <div class="sidebar p-3">
                 <div class="d-flex profile align-items-center">
                     {% if user.profile.profile_photo %}
-                <a href="{% url 'profile' %}">
-                    <img class="img-fluid" src="{{ user.profile.profile_photo.url }}"/>
-                </a>
-                {% endif %}
+                    <a href="{% url 'profile' %}">
+                        <img class="img-fluid" src="{{ user.profile.profile_photo.url }}" />
+                    </a>
+                    {% endif %}
 
                     <a href="{% url 'profile' %}" class="text-decoration-none">
                         <p class="ms-5 fs-4 fw-light text-dark">{{ user.username }}</p>
@@ -185,7 +195,7 @@
                         <div class="d-flex">
                             {% if people.profile_photo %}
                             <a href="">
-                                <img class="img-fluid" src="{{ people.profile_photo.url }}"/>
+                                <img class="img-fluid" src="{{ people.profile_photo.url }}" />
                             </a>
                             {% endif %}
                             <div class="ms-3 d-flex flex-column">
@@ -208,5 +218,8 @@
 {% block scripts %}
 {{ block.super }}
 <script src="{% static 'js/index.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+</script>
 {% endblock scripts %}
 {% endblock content %}

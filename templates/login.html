@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load django_bootstrap5 %}
 
 {% block styles %}
 {{ block.super }}
@@ -10,69 +11,71 @@
 
 {% block content %}
 <section class="container login d-flex justify-content-center align-items-center">
-        <img src="{% static 'images/insta-login-phones.png' %}" alt="" srcset="">
+    <img src="{% static 'images/insta-login-phones.png' %}" alt="" srcset="">
 
-        <div>
-            <div class="card p-3" style="max-width: 22rem;">
-                <h5 class="card-title text-center fst-italic fw-bold mb-3">Instagram</h5>
-                <div class="card-body">
-                    <form method="POST" action="{% url 'login' %}">
-                        {% csrf_token %}
-                        <div class="mb-3">
-                            {{form.username}}
+    <div>
+        <div class="card p-3" style="max-width: 22rem;">
+            <h5 class="card-title text-center fst-italic fw-bold mb-3">Instagram</h5>
+            <div class="card-body">
+                <form method="POST" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        {{form.username}}
+                    </div>
+                    <div class="mb-3">
+                        {{form.password1}}
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100 fw-bold btn-sm">Log In</button>
+
+                    <p class="fw-light text-center text-secondary my-3">OR</p>
+
+                    <div class="text-center">
+                        <div>
+                            <small class="mb-3 text-primary d-flex justify-content-center fw-bold">
+                                <i class='bx bxl-facebook-square fs-4'></i>
+                                <p>Log in with Facebook</p>
+                            </small>
                         </div>
-                        <div class="mb-3">
-                            {{form.password1}}
+
+                        <div>
+                            <small class="text-primary fw-light">
+                                Forgot password?
+                            </small>
                         </div>
-                        <button type="submit" class="btn btn-primary w-100 fw-bold btn-sm">Log In</button>
+                    </div>
 
-                        <p class="fw-light text-center text-secondary my-3">OR</p>
+                    <div class="mt-4 border-top border-bottom py-3 text-center">
+                        <small>Don't have an account? <a href="{% url 'signup' %}"
+                                class="fw-bold text-decoration-none">Sign
+                                up</a></small>
+                    </div>
 
-                        <div class="text-center">
-                            <div>
-                                <small class="mb-3 text-primary d-flex justify-content-center fw-bold">
-                                    <i class='bx bxl-facebook-square fs-4'></i>
-                                    <p>Log in with Facebook</p>
+                    <div class="text-center">
+                        <p class="my-3">
+                            <small>Get the app</small>
+                        </p>
+
+                        <div class="d-flex">
+                            <div class="d-flex bg-dark align-items-center text-light me-1 rounded">
+                                <i class='bx bxl-apple fs-3'></i>
+                                <small>
+                                    <small>Download on <span class="fs-5">App Store</span></small>
                                 </small>
                             </div>
-
-                            <div>
-                                <small class="text-primary fw-light">
-                                    Forgot password?
+                            <div class="d-flex align-items-center bg-dark p-1 text-light rounded">
+                                <i class='bx bxl-play-store fs-3'></i>
+                                <small>
+                                    <small>Download on <span class="fs-5">Google Play</span></small>
                                 </small>
                             </div>
                         </div>
-
-                        <div class="mt-4 border-top border-bottom py-3 text-center">
-                            <small>Don't have an account? <a href="{% url 'signup' %}" class="fw-bold text-decoration-none">Sign
-                                    up</a></small>
-                        </div>
-
-                        <div class="text-center">
-                            <p class="my-3">
-                                <small>Get the app</small>
-                            </p>
-
-                            <div class="d-flex">
-                                <div class="d-flex bg-dark align-items-center text-light me-1 rounded">
-                                    <i class='bx bxl-apple fs-3'></i>
-                                    <small>
-                                        <small>Download on <span class="fs-5">App Store</span></small>
-                                    </small>
-                                </div>
-                                <div class="d-flex align-items-center bg-dark p-1 text-light rounded">
-                                    <i class='bx bxl-play-store fs-3'></i>
-                                    <small>
-                                        <small>Download on <span class="fs-5">Google Play</span></small>
-                                    </small>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
 {% block scripts %}
 {{ block.super }}

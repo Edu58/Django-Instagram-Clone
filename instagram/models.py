@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_photo = models.ImageField(default="https://images.unsplash.com/photo-1654786387184-f6e050c81edc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80", null=True, blank=True, upload_to='photos/')
+    profile_photo = models.ImageField(default="media/photo/piyanut-unsplash_embwtk.jpg", upload_to='photos/')
     bio = models.TextField(max_length=500, blank=True)
     birth_date = models.DateField(null=False, blank=False)
     location = models.CharField(max_length=30, null=True, blank=True)
